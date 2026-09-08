@@ -42,7 +42,7 @@ tent_decoding/CORE_0_2_1_decoder_2_latent_decoding.md
 
 ## sub_nodes
 
-*(rebuilt by the generator)*
+- [evaluation_engine](node_0_2_1_0_evaluation_engine/CORE_0_2_1_0_evaluation_engine.md)
 
 ## definition
 

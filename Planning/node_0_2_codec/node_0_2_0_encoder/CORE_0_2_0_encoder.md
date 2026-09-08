@@ -52,7 +52,7 @@ _2_pyramid_walker/CORE_0_2_0_encoder_2_pyramid_walker.md
 
 ## sub_nodes
 
-*(rebuilt by the generator)*
+- [base_leaf_minter](node_0_2_0_0_base_leaf_minter/CORE_0_2_0_0_base_leaf_minter.md)
 
 ## definition
 
