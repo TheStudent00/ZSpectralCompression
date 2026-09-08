@@ -37,7 +37,9 @@ sub_nodes:
 
 ## sub_nodes
 
-*(rebuilt by the generator)*
+- [vision_geometry_config](node_0_4_0_vision_geometry_config/CORE_0_4_0_vision_geometry_config.md)
+- [rate_distortion_optimizer](node_0_4_1_rate_distortion_optimizer/CORE_0_4_1_rate_distortion_optimizer.md)
+- [metrics](node_0_4_2_metrics/CORE_0_4_2_metrics.md)
 
 ## definition
 

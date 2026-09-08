@@ -37,7 +37,9 @@ sub_nodes:
 
 ## sub_nodes
 
-*(rebuilt by the generator)*
+- [encoder](node_0_2_0_encoder/CORE_0_2_0_encoder.md)
+- [decoder](node_0_2_1_decoder/CORE_0_2_1_decoder.md)
+- [interface](node_0_2_2_interface/CORE_0_2_2_interface.md)
 
 ## definition
 

@@ -37,7 +37,9 @@ sub_nodes:
 
 ## sub_nodes
 
-*(rebuilt by the generator)*
+- [global_canvas_framer](node_0_1_0_global_canvas_framer/CORE_0_1_0_global_canvas_framer.md)
+- [z_curve_router](node_0_1_1_z_curve_router/CORE_0_1_1_z_curve_router.md)
+- [geometry_interpreter](node_0_1_2_geometry_interpreter/CORE_0_1_2_geometry_interpreter.md)
 
 ## definition
 

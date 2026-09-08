@@ -4,32 +4,75 @@ level: 1
 status: draft
 settled_by: the owner
 supersedes: null
-designation: pending
+designation: grouping
 node:
     name: findings
     path: Planning/node_0_5_findings/CORE_0_5_findings.md
 super_node:
     name: zspectral
     path: ../CORE_0.md
-sub_nodes: []
+sub_nodes:
+    - name: one_dimensional_behaviour
+      path: node_0_5_0_one_dimensional_behaviour/CORE_0_5_0_one_dimensional_behaviour.md
+    - name: codebook_tradeoff
+      path: node_0_5_1_codebook_tradeoff/CORE_0_5_1_codebook_tradeoff.md
+    - name: index_stream_entropy
+      path: node_0_5_2_index_stream_entropy/CORE_0_5_2_index_stream_entropy.md
+    - name: edit_locality
+      path: node_0_5_3_edit_locality/CORE_0_5_3_edit_locality.md
 ---
 
 # CORE 0_5 — findings
 
 ## metadata
 
-*(pending)*
+- **id:** zspectral.findings
+- **level:** 1
+- **status:** draft
+- **designation:** grouping
+- **settled_by:** the owner
+- **supersedes:** null
 
 ## super_node
 
-*(none)*
+- [zspectral](../CORE_0.md)
 
 ## sub_nodes
 
-*(none yet)*
+- [one_dimensional_behaviour](node_0_5_0_one_dimensional_behaviour/CORE_0_5_0_one_dimensional_behaviour.md)
+- [codebook_tradeoff](node_0_5_1_codebook_tradeoff/CORE_0_5_1_codebook_tradeoff.md)
+- [index_stream_entropy](node_0_5_2_index_stream_entropy/CORE_0_5_2_index_stream_entropy.md)
+- [edit_locality](node_0_5_3_edit_locality/CORE_0_5_3_edit_locality.md)
 
 ## definition
 
-*(pending — generated 2026-09-08 from the register in
-~/Programming/ZSpectralCompression/Planning/CORE_0.md; the definition and `designation` are the owner's to
-write.)*
+What has been measured about this representation, on what data, with
+what harness — and which claims the measurements do not support.
+
+## the four results in one line each
+
+- **On symbol data the polynomial fit raises entropy.** C++ source
+  goes from 5.17 to 5.88 bits per byte after fitting. The transform
+  destroys structure rather than concentrating it.
+- **On smooth sampled data it wins large.** A signal whose byte
+  histogram carries 7.56 of 8 bits drops to 0.32 bits per byte.
+- **The codebook shifts cost between coefficients and residual**, and
+  which way it shifts depends on the data.
+- **The index stream is far from incompressible.** Its symbols look
+  uniform and its *sequence* does not: 7.41 bits per label by
+  histogram, 0.85 conditioned on the previous label.
+
+## the harness, stated because it bounds every number above
+
+Not the prototype. A degree-3 Chebyshev fit over fixed 8-sample
+windows, integer coefficients, exact residual, written in pure Python
+and run in the Airlock `sandbox-runner` container on 2026-09-08.
+
+- The prototype merges segments adaptively, so a smooth region becomes
+  one long token and the coefficient cost amortises. The harness pays
+  four coefficients per eight bytes always.
+- Therefore **every total-cost number here is a floor on the
+  prototype, not a ceiling.** The per-window residual entropies are a
+  fair reading of whether the basis fits the data at all; the totals
+  are not a fair reading of the prototype's ratio.
+- Full record: `~/Programming/ZSpectralCompression/DevComms/log_001_one_dimensional_measurements.md`.

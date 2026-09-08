@@ -43,7 +43,12 @@ sub_nodes:
 
 ## sub_nodes
 
-*(rebuilt by the generator)*
+- [spectral_layout](node_0_0_0_spectral_layout/CORE_0_0_0_spectral_layout.md)
+- [spectral_tensor](node_0_0_1_spectral_tensor/CORE_0_0_1_spectral_tensor.md)
+- [chebyshev_math](node_0_0_2_chebyshev_math/CORE_0_0_2_chebyshev_math.md)
+- [spectral_topology](node_0_0_3_spectral_topology/CORE_0_0_3_spectral_topology.md)
+- [kinematic_physics](node_0_0_4_kinematic_physics/CORE_0_0_4_kinematic_physics.md)
+- [spectral_algebra](node_0_0_5_spectral_algebra/CORE_0_0_5_spectral_algebra.md)
 
 ## definition
 
