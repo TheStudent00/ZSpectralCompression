@@ -4,7 +4,7 @@ level: 2
 status: draft
 settled_by: the owner
 supersedes: null
-designation: pending
+designation: code (class)
 node:
     name: spectral_layout
     path: Planning/node_0_0_algebra/node_0_0_0_spectral_layout/CORE_0_0_0_spectral_layout.md
@@ -18,18 +18,20 @@ sub_nodes: []
 
 ## metadata
 
-*(pending)*
+- **id:** zspectral.algebra.spectral_layout
+- **level:** 2
+- ## definition
 
-## super_node
+Every axis index, key list and slice map the algebra uses, computed
+once at class-definition time from four key lists.
 
-*(none)*
-
-## sub_nodes
-
-*(none yet)*
-
-## definition
-
-*(pending — generated 2026-09-08 from the register in
+`COEFF_DIM_KEYS = ["Segments","Bounds","Chebyshev"]` and
+`META_KEYS = ["z_real","z_virt","m_real","m_virt","L","confidence"]`
+are the two that decide every shape. The axis indices, the slicing
+maps and the transpose axes are all derived from them, so changing
+the representation is one edit here rather than a search across the
+module. Its own docstring states the intent: "eliminate magic numbers
+across the architecture".
+nerated 2026-09-08 from the register in
 ~/Programming/ZSpectralCompression/Planning/node_0_0_algebra/CORE_0_0_algebra.md; the definition and `designation` are the owner's to
 write.)*

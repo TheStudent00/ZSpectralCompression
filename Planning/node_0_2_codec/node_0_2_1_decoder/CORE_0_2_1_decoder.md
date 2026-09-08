@@ -4,29 +4,45 @@ level: 2
 status: draft
 settled_by: the owner
 supersedes: null
-designation: pending
+designation: code (module)
 node:
     name: decoder
     path: Planning/node_0_2_codec/node_0_2_1_decoder/CORE_0_2_1_decoder.md
 super_node:
     name: codec
     path: ../CORE_0_2_codec.md
-sub_nodes: []
+sub_nodes:
+    - name: evaluation_engine
+      path: node_0_2_1_decoder_0_evaluation_engine/CORE_0_2_1_decoder_0_eva## definition
+
+Tokens back to a one-dimensional stream.
+
+Each token's coefficients are evaluated against a Chebyshev basis
+generated at that token's own length, and the pieces are concatenated
+in order. The upper and lower curves are averaged to a single output
+curve, which is the point at which the interval representation
+collapses to one value.
+tent_decoding/CORE_0_2_1_decoder_2_latent_decoding.md
 ---
 
 # CORE 0_2_1 — decoder
 
 ## metadata
 
-*(pending)*
+- **id:** zspectral.codec.decoder
+- **level:** 2
+- **status:** draft
+- **designation:** code (module)
+- **settled_by:** the owner
+- **supersedes:** null
 
 ## super_node
 
-*(none)*
+- [codec](../CORE_0_2_codec.md)
 
 ## sub_nodes
 
-*(none yet)*
+*(rebuilt by the generator)*
 
 ## definition
 

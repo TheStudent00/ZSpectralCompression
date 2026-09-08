@@ -4,7 +4,7 @@ level: 2
 status: draft
 settled_by: the owner
 supersedes: null
-designation: pending
+designation: code (class)
 node:
     name: kinematic_physics
     path: Planning/node_0_0_algebra/node_0_0_4_kinematic_physics/CORE_0_0_4_kinematic_physics.md
@@ -18,18 +18,22 @@ sub_nodes: []
 
 ## metadata
 
-*(pending)*
-
-## super_node
-
-*(none)*
-
-## sub_nodes
-
-*(none yet)*
-
+- **id:** zspectral.algebra.kinematic_physics
+- **level:** 2
 ## definition
 
-*(pending — generated 2026-09-08 from the register in
+How the `meta` channels combine when two values interact.
+
+Each operation — add, multiply, compose, matrix-multiply — has its
+own rule for propagating real and virtual position, real and virtual
+mass, interval length and confidence. Composition additionally takes
+the positive and negative stretch from
+[chebyshev_math](../node_0_0_2_chebyshev_math/CORE_0_0_2_chebyshev_math.md),
+because composing functions rescales the inner function's coordinate.
+
+Unverified: the meta channels play no part in compression. Nothing on
+the encode or decode path reads them except `confidence`, which
+`integrate` uses as a weight.
+generated 2026-09-08 from the register in
 ~/Programming/ZSpectralCompression/Planning/node_0_0_algebra/CORE_0_0_algebra.md; the definition and `designation` are the owner's to
 write.)*

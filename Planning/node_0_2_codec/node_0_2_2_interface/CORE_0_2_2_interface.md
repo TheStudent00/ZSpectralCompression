@@ -4,7 +4,7 @@ level: 2
 status: draft
 settled_by: the owner
 supersedes: null
-designation: pending
+designation: code (class)
 node:
     name: interface
     path: Planning/node_0_2_codec/node_0_2_2_interface/CORE_0_2_2_interface.md
@@ -18,18 +18,20 @@ sub_nodes: []
 
 ## metadata
 
-*(pending)*
+- **id:** zspectral.codec.interface
+- **level:** 2
+- **status## definition
 
-## super_node
+The thin composition: `encode` runs the geometry boundary then
+[encoder](../node_0_2_0_encoder/CORE_0_2_0_encoder.md); `decode` runs
+[decoder](../node_0_2_1_decoder/CORE_0_2_1_decoder.md) then the
+inverse boundary.
 
-*(none)*
-
-## sub_nodes
-
-*(none yet)*
-
-## definition
-
-*(pending — generated 2026-09-08 from the register in
+It holds one config object and no logic of its own. It is a node
+rather than a `realize: false` entry because it is the surface
+[zspectral_compressor](../../node_0_3_container/node_0_3_2_zspectral_compressor/CORE_0_3_2_zspectral_compressor.md)
+calls, and a reader looking for "where does compression start" lands
+here.
+2026-09-08 from the register in
 ~/Programming/ZSpectralCompression/Planning/node_0_2_codec/CORE_0_2_codec.md; the definition and `designation` are the owner's to
 write.)*
