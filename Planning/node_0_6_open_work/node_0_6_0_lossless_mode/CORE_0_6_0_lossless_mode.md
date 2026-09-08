@@ -61,3 +61,36 @@ encodes the residual of its linear prediction. That makes the
 polynomial fit a *predictor* rather than a representation, and moves
 the compression into whatever entropy coder handles the residual —
 which is a real design, and a different one from what exists.
+
+## partly answered, 2026-09-08
+
+the owner's clarification — "exact" means the reconstruction must *round* to
+the original byte, not be bit-exact before rounding — makes the
+question measurable without running the prototype, by counting how
+often the rounded fit already equals the source.
+
+| file | segment length | rounds exact | correction | coefficients | lossless total |
+|---|---|---|---|---|---|
+| smooth_1d | 128 | 97.6% | 0.19 | 1.00 | 1.19 |
+| smooth_1d | 512 | 97.8% | 0.18 | 0.25 | **0.43** |
+| python_source | 512 | 0.3% | 6.54 | 0.25 | 6.79 |
+
+Bits per byte; coefficients priced pessimistically at four float32 per
+segment.
+
+- **On smooth data lossless is viable and wants long segments.** 0.43
+  bits per byte at length 512 against `xz -9` at 0.28, and roughly
+  0.31 if the coefficients are quantised to 16 bits — level with the
+  baseline, on data where a histogram coder gets nothing.
+- **The correction stream plateaus at 0.18 bits per byte** past length
+  128. That is the floor from the source having been quantised to
+  bytes, not a limit of the basis.
+- **Text is not viable at any length**, now measured across five.
+
+What remains for the prototype's own run: the harness segments at
+fixed lengths, so it cannot show what *adaptive* merging reaches, and
+it reads 2D data in raster order rather than Z-order. Both are
+expected to move the numbers the same way — better — so these are a
+floor.
+
+Record: `~/Programming/ZSpectralCompression/DevComms/log_003_roundable_to_exact.md` §3.
