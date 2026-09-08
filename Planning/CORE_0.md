@@ -45,13 +45,13 @@ sub_nodes:
 
 ## sub_nodes
 
-- [algebra](node_0_0_algebra/CORE_0_0_algebra.md)
-- [geometry](node_0_1_geometry/CORE_0_1_geometry.md)
-- [codec](node_0_2_codec/CORE_0_2_codec.md)
-- [container](node_0_3_container/CORE_0_3_container.md)
-- [evaluation](node_0_4_evaluation/CORE_0_4_evaluation.md)
-- [findings](node_0_5_findings/CORE_0_5_findings.md)
-- [open_work](node_0_6_open_work/CORE_0_6_open_work.md)
+- [algebra](node_0_0_algebra/CORE_0_0_algebra.md) — The value type the whole project operates on — a piecewise Chebyshev spline carrying an upper and a lower bound at every point — and the arithmetic closed over it.
+- [geometry](node_0_1_geometry/CORE_0_1_geometry.md) — The boundary between data of any dimension and the one-dimensional sequence everything downstream operates on, together with the inverse.
+- [codec](node_0_2_codec/CORE_0_2_codec.md) — The conversion between a one-dimensional stream of samples and a set of variable-length tokens, each token one Chebyshev polynomial over one interval.
+- [container](node_0_3_container/CORE_0_3_container.md) — The stored form: what a compressed payload actually contains, and how the token set is reduced to bytes.
+- [evaluation](node_0_4_evaluation/CORE_0_4_evaluation.md) — How the codec is configured, what is counted when it runs, and the sweep that trades size against error.
+- [findings](node_0_5_findings/CORE_0_5_findings.md) — What has been measured about this representation, on what data, with what harness — and which claims the measurements do not support.
+- [open_work](node_0_6_open_work/CORE_0_6_open_work.md) — Work the findings point at.
 
 ## definition
 

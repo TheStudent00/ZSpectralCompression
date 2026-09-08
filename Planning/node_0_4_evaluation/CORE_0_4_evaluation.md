@@ -37,9 +37,9 @@ sub_nodes:
 
 ## sub_nodes
 
-- [vision_geometry_config](node_0_4_0_vision_geometry_config/CORE_0_4_0_vision_geometry_config.md)
-- [rate_distortion_optimizer](node_0_4_1_rate_distortion_optimizer/CORE_0_4_1_rate_distortion_optimizer.md)
-- [metrics](node_0_4_2_metrics/CORE_0_4_2_metrics.md)
+- [vision_geometry_config](node_0_4_0_vision_geometry_config/CORE_0_4_0_vision_geometry_config.md) — The configuration used for image runs: `min_patch_size = 4`, `merge_threshold = 0.02`, and the 4x4 Chebyshev basis matrix `A` evaluated at four equispaced points with its pseudo-inverse.
+- [rate_distortion_optimizer](node_0_4_1_rate_distortion_optimizer/CORE_0_4_1_rate_distortion_optimizer.md) — Sweeps `merge_threshold` and reports, per setting, the payload size against the mean squared error of the reconstruction.
+- [metrics](node_0_4_2_metrics/CORE_0_4_2_metrics.md) — Counts payload bytes analytically from the parts rather than measuring a serialised file: labels at 1 or 2 bytes per token, `c0` at 1 byte per token, the codebook at `K * 3 * 4` bytes, plus the topology byte tensor.
 
 ## definition
 

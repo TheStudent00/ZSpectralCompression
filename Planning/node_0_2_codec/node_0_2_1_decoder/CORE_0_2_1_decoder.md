@@ -37,7 +37,9 @@ sub_nodes:
 
 ## sub_nodes
 
-*(rebuilt by the generator)*
+- [evaluation_engine](node_0_2_1_0_evaluation_engine/CORE_0_2_1_0_evaluation_engine.md) — Rebuilds a Chebyshev basis at whatever length a token needs, caches it per length, and evaluates the token's coefficients against it.
+- [signal_assembler](node_0_2_1_1_signal_assembler/CORE_0_2_1_1_signal_assembler.md) — Evaluates every token and concatenates the pieces back into one stream, in interval order.
+- [latent_decoding](node_0_2_1_2_latent_decoding/CORE_0_2_1_2_latent_decoding.md) — The composition on the decode side: `decode_stream(latent_tokens, target_intervals)` runs the assembler over the engine and returns the flat stream, which [geometry_interpreter](../../../node_0_1_geometry/node_0_1_2_geometry_interpreter/CORE_0_1_2_geometry_interpreter.md) then folds back into N dimensions.
 
 ## definition
 

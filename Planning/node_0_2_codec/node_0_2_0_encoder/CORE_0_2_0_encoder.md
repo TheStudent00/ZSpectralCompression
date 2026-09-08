@@ -43,7 +43,12 @@ sub_nodes:
 
 ## sub_nodes
 
-*(rebuilt by the generator)*
+- [base_leaf_minter](node_0_2_0_0_base_leaf_minter/CORE_0_2_0_0_base_leaf_minter.md) — Stage 1.
+- [topological_pyramid](node_0_2_0_1_topological_pyramid/CORE_0_2_0_1_topological_pyramid.md) — Stage 2.
+- [pyramid_walker](node_0_2_0_2_pyramid_walker/CORE_0_2_0_2_pyramid_walker.md) — Stage 3.
+- [dual_curve_fitter](node_0_2_0_3_dual_curve_fitter/CORE_0_2_0_3_dual_curve_fitter.md) — Stage 4.
+- [physics_minter](node_0_2_0_4_physics_minter/CORE_0_2_0_4_physics_minter.md) — Stage 5.
+- [latent_encoding](node_0_2_0_5_latent_encoding/CORE_0_2_0_5_latent_encoding.md) — The composition of the five stages, and the only object the rest of the codec holds.
 
 ## definition
 

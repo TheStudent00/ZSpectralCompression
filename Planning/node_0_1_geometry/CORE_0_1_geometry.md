@@ -37,9 +37,9 @@ sub_nodes:
 
 ## sub_nodes
 
-- [global_canvas_framer](node_0_1_0_global_canvas_framer/CORE_0_1_0_global_canvas_framer.md)
-- [z_curve_router](node_0_1_1_z_curve_router/CORE_0_1_1_z_curve_router.md)
-- [geometry_interpreter](node_0_1_2_geometry_interpreter/CORE_0_1_2_geometry_interpreter.md)
+- [global_canvas_framer](node_0_1_0_global_canvas_framer/CORE_0_1_0_global_canvas_framer.md) — Pads every axis up to the next power of two with zeros, and crops back afterwards.
+- [z_curve_router](node_0_1_1_z_curve_router/CORE_0_1_1_z_curve_router.md) — Orders the cells of a padded canvas by Morton code, and reports where each group of cells came from.
+- [geometry_interpreter](node_0_1_2_geometry_interpreter/CORE_0_1_2_geometry_interpreter.md) — Composes the framer and the router into one boundary: `flatten_to_1d` and `unflatten_to_nd`.
 
 ## definition
 

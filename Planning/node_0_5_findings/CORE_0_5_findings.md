@@ -39,10 +39,10 @@ sub_nodes:
 
 ## sub_nodes
 
-- [one_dimensional_behaviour](node_0_5_0_one_dimensional_behaviour/CORE_0_5_0_one_dimensional_behaviour.md)
-- [codebook_tradeoff](node_0_5_1_codebook_tradeoff/CORE_0_5_1_codebook_tradeoff.md)
-- [index_stream_entropy](node_0_5_2_index_stream_entropy/CORE_0_5_2_index_stream_entropy.md)
-- [edit_locality](node_0_5_3_edit_locality/CORE_0_5_3_edit_locality.md)
+- [one_dimensional_behaviour](node_0_5_0_one_dimensional_behaviour/CORE_0_5_0_one_dimensional_behaviour.md) — What the polynomial basis does to one-dimensional data that is not a sampled signal.
+- [codebook_tradeoff](node_0_5_1_codebook_tradeoff/CORE_0_5_1_codebook_tradeoff.md) — What the k-means codebook does to the cost, measured 2026-09-08 at K = 256 against the same files.
+- [index_stream_entropy](node_0_5_2_index_stream_entropy/CORE_0_5_2_index_stream_entropy.md) — Whether the compressed output can be compressed again.
+- [edit_locality](node_0_5_3_edit_locality/CORE_0_5_3_edit_locality.md) — What the Z-order traversal is worth when data changes.
 
 ## definition
 

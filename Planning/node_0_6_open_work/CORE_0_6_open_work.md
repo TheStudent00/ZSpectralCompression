@@ -37,9 +37,9 @@ sub_nodes:
 
 ## sub_nodes
 
-- [lossless_mode](node_0_6_0_lossless_mode/CORE_0_6_0_lossless_mode.md)
-- [stride_discovery](node_0_6_1_stride_discovery/CORE_0_6_1_stride_discovery.md)
-- [chunker_framing](node_0_6_2_chunker_framing/CORE_0_6_2_chunker_framing.md)
+- [lossless_mode](node_0_6_0_lossless_mode/CORE_0_6_0_lossless_mode.md) — Establish what the real pyramid costs at `merge_threshold = 0`, on `smooth_1d` and `smooth_2d_raw`.
+- [stride_discovery](node_0_6_1_stride_discovery/CORE_0_6_1_stride_discovery.md) — Recover the hidden dimensionality of a flat byte stream before encoding it, and reshape accordingly.
+- [chunker_framing](node_0_6_2_chunker_framing/CORE_0_6_2_chunker_framing.md) — Decide whether the project's centre is the codec or the addressing scheme.
 
 ## definition
 

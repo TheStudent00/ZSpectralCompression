@@ -37,9 +37,9 @@ sub_nodes:
 
 ## sub_nodes
 
-- [topology_serializer](node_0_3_0_topology_serializer/CORE_0_3_0_topology_serializer.md)
-- [vector_quantizer](node_0_3_1_vector_quantizer/CORE_0_3_1_vector_quantizer.md)
-- [zspectral_compressor](node_0_3_2_zspectral_compressor/CORE_0_3_2_zspectral_compressor.md)
+- [topology_serializer](node_0_3_0_topology_serializer/CORE_0_3_0_topology_serializer.md) — Encodes the segment lengths as a pre-order bitmask over a binary subdivision of the total length.
+- [vector_quantizer](node_0_3_1_vector_quantizer/CORE_0_3_1_vector_quantizer.md) — Replaces each token's three shape coefficients with an index into a learned codebook.
+- [zspectral_compressor](node_0_3_2_zspectral_compressor/CORE_0_3_2_zspectral_compressor.md) — Assembles a payload and takes one apart.
 
 ## definition
 

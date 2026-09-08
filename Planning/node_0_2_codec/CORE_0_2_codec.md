@@ -37,9 +37,9 @@ sub_nodes:
 
 ## sub_nodes
 
-- [encoder](node_0_2_0_encoder/CORE_0_2_0_encoder.md)
-- [decoder](node_0_2_1_decoder/CORE_0_2_1_decoder.md)
-- [interface](node_0_2_2_interface/CORE_0_2_2_interface.md)
+- [encoder](node_0_2_0_encoder/CORE_0_2_0_encoder.md) — Raw one-dimensional stream to a set of variable-length polynomial tokens, in five stages.
+- [decoder](node_0_2_1_decoder/CORE_0_2_1_decoder.md) — Tokens back to a one-dimensional stream.
+- [interface](node_0_2_2_interface/CORE_0_2_2_interface.md) — The thin composition: `encode` runs the geometry boundary then [encoder](../node_0_2_0_encoder/CORE_0_2_0_encoder.md); `decode` runs [decoder](../node_0_2_1_decoder/CORE_0_2_1_decoder.md) then the inverse boundary.
 
 ## definition
 

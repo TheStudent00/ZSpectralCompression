@@ -43,12 +43,12 @@ sub_nodes:
 
 ## sub_nodes
 
-- [spectral_layout](node_0_0_0_spectral_layout/CORE_0_0_0_spectral_layout.md)
-- [spectral_tensor](node_0_0_1_spectral_tensor/CORE_0_0_1_spectral_tensor.md)
-- [chebyshev_math](node_0_0_2_chebyshev_math/CORE_0_0_2_chebyshev_math.md)
-- [spectral_topology](node_0_0_3_spectral_topology/CORE_0_0_3_spectral_topology.md)
-- [kinematic_physics](node_0_0_4_kinematic_physics/CORE_0_0_4_kinematic_physics.md)
-- [spectral_algebra](node_0_0_5_spectral_algebra/CORE_0_0_5_spectral_algebra.md)
+- [spectral_layout](node_0_0_0_spectral_layout/CORE_0_0_0_spectral_layout.md) — Every axis index, key list and slice map the algebra uses, computed once at class-definition time from four key lists.
+- [spectral_tensor](node_0_0_1_spectral_tensor/CORE_0_0_1_spectral_tensor.md) — The value: a pair of tensors, `coeffs` and `meta`.
+- [chebyshev_math](node_0_0_2_chebyshev_math/CORE_0_0_2_chebyshev_math.md) — The degree-3 Chebyshev operations that do not depend on the tensor layout.
+- [spectral_topology](node_0_0_3_spectral_topology/CORE_0_0_3_spectral_topology.md) — Changing how many segments a spline is expressed in, without changing the function it denotes.
+- [kinematic_physics](node_0_0_4_kinematic_physics/CORE_0_0_4_kinematic_physics.md) — How the `meta` channels combine when two values interact.
+- [spectral_algebra](node_0_0_5_spectral_algebra/CORE_0_0_5_spectral_algebra.md) — Addition, multiplication, matrix multiplication, composition and integration over [spectral_tensor](../node_0_0_1_spectral_tensor/CORE_0_0_1_spectral_tensor.md).
 
 ## definition
 
