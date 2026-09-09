@@ -1,2 +1,4 @@
 plan.html
 __pycache__/
+*.png
+!jwst_final_goldilocks.png

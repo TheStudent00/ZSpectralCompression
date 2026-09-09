@@ -118,3 +118,55 @@ which §5 says is the weaker of the two.
 - `~/Programming/ZSpectralCompression/DevComms/log_006_lossless_criterion.md`
   — the rate criterion, and the lossy-plus-corrections structure.
 - `~/Programming/ZSpectralCompression/Planning/node_0_5_findings/node_0_5_0_one_dimensional_behaviour/CORE_0_5_0_one_dimensional_behaviour.md`
+
+---
+
+## 8. Amendment 2026-09-09 — basis degree, and where the bits actually go
+
+the owner: *"thats something ive been curious about changing for a less
+complex basis."* Measured. Every configuration below restores 100% of
+bytes; segment length and coefficient precision are swept per degree
+and the best kept.
+
+| file | deg 0 | deg 1 | deg 2 | deg 3 | `xz -9` |
+|---|---|---|---|---|---|
+| python_source | **1.26x** | 1.24x | 1.23x | 1.22x | 3.80x |
+| english_prose | **1.36x** | 1.33x | 1.31x | 1.29x | 2.72x |
+| elf_binary | **1.10x** | 1.03x | 1.03x | 1.03x | 3.31x |
+| photo tile | **1.56x** | 1.53x | 1.52x | 1.51x | 1.81x |
+| smooth_1d | 7.18x | 18.24x | 22.72x | **25.89x** | 26.09x |
+
+**Lower degree wins on everything except the data ZSC is built for.**
+Degree 0 — piecewise constant, which is run-length coding — is the
+best polynomial model for text, code, binaries and even a photo tile.
+Degree 3 is worth 3.6x over degree 0 on a smooth signal and costs a
+few percent everywhere else.
+
+So the degree is not a global constant to be tuned once. **It is a
+per-segment decision**, in the same way segment length already is: the
+walker should pick the degree that minimises bits for that segment,
+which for a flat run is 0 and for a smooth sweep is 3. Two bits per
+segment would carry the choice.
+
+### Where the bits go, at the settings in the figure
+
+160 bytes = 1280 bits. From `Tools/plot_segmentation.py`:
+
+| panel | segments | coefficient cost | as a share of the raw file |
+|---|---|---|---|
+| text @ 0.05 | 31 | 31 x 4 x 12 = **1488 bits** | **116%** |
+| smooth @ 0.05 | 3 | 3 x 4 x 12 = **144 bits** | 11% |
+
+**On text the segment descriptions alone exceed the file, before a
+single patch is stored.** That is the whole explanation of why text
+does not compress here, and it is visible directly in the figure as
+the density of the dotted boundary lines.
+
+### A correction to how §3 of log 006 framed this
+
+Log 006 reported "only 0.33% of samples needed no patch" as though a
+low zero-patch fraction were the problem. The figure shows it is not:
+the smooth panel has **3.8%** needing no patch — nearly every byte is
+corrected — and it is the panel that compresses. What matters is the
+*entropy* of the patch stream, not how many entries are zero. Many
+tiny patches are cheap; few large ones are not.
