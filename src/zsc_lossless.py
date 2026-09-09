@@ -102,8 +102,54 @@ def segment_cost(win, deg, cb):
     q = np.rint((coef - lo) / step)
     rec = np.clip((q * step + lo) @ A.T, 0, 255).round()
     res = (win - rec).astype(np.int64)
-    per = np.full(win.shape[0], (deg + 1) * cb, dtype=float) + W * _entropy(res.ravel())
+    span = res.max(axis=1) - res.min(axis=1)
+    rbits = np.where(span > 0, np.ceil(np.log2(span + 1)), 0.0)
+    per = (deg + 1) * cb + 24.0 + W * rbits          # coeffs + residual header + packed bits
     return per, q.astype(np.int64), (lo, step), res
+
+
+
+def _pack_residuals(res):
+    """Per-segment bit packing. Each segment stores its own minimum and bit width,
+    so it stays independently decodable — random access does not need to walk
+    earlier segments — while costing ceil(log2(range)) bits per sample instead of
+    a flat 16. This is the addressable container's residual format."""
+    n, W = res.shape
+    rmin = res.min(axis=1)
+    span = (res.max(axis=1) - rmin).astype(np.int64)
+    rbits = np.where(span > 0, np.ceil(np.log2(span + 1)).astype(np.int64), 0)
+    head = np.empty(n * 3, dtype=np.uint8)
+    head[0::3] = rbits.astype(np.uint8)
+    head[1::3] = (rmin.astype(np.int32) & 0xFF).astype(np.uint8)
+    head[2::3] = ((rmin.astype(np.int32) >> 8) & 0xFF).astype(np.uint8)
+    bits = []
+    for i in range(n):
+        rb = int(rbits[i])
+        if rb == 0:
+            continue
+        v = (res[i] - rmin[i]).astype(np.int64)
+        b = ((v[:, None] >> np.arange(rb - 1, -1, -1)[None, :]) & 1).ravel()
+        bits.append(b.astype(np.uint8))
+    packed = np.packbits(np.concatenate(bits)) if bits else np.zeros(0, np.uint8)
+    return head.tobytes(), packed.tobytes(), rbits
+
+
+def _unpack_residuals(head, packed, n, W):
+    h = np.frombuffer(head, np.uint8, n * 3).reshape(n, 3).astype(np.int64)
+    rbits = h[:, 0]
+    rmin = (h[:, 1] | (h[:, 2] << 8)).astype(np.int16).astype(np.int64)
+    total = int((rbits * W).sum())
+    allbits = np.unpackbits(np.frombuffer(packed, np.uint8))[:total]
+    out = np.zeros((n, W), dtype=np.int64)
+    off = 0
+    for i in range(n):
+        rb = int(rbits[i])
+        if rb == 0:
+            out[i] = rmin[i]
+            continue
+        b = allbits[off:off + rb * W].reshape(W, rb); off += rb * W
+        out[i] = (b * (1 << np.arange(rb - 1, -1, -1))[None, :]).sum(1) + rmin[i]
+    return out
 
 
 # ---------------------------------------------------------------- codec
@@ -161,7 +207,7 @@ class ZSCLossless:
         modes = np.array([p[0] for p in pick], dtype=np.uint8)
         cbs = np.array([p[1] if p[0] != MODE_RAW else 0 for p in pick], dtype=np.uint8)
 
-        coef_blob, raw_blob, res_blob = io.BytesIO(), io.BytesIO(), io.BytesIO()
+        coef_blob, raw_blob, keep = io.BytesIO(), io.BytesIO(), []
         for i in range(n):
             deg = modes[i]
             if deg == MODE_RAW:
@@ -170,7 +216,7 @@ class ZSCLossless:
                 continue
             q, (lo, step), res = store[(deg, cbs[i])]
             coef_blob.write(q[i].astype("<i4").tobytes())
-            res_blob.write(res[i].astype("<i2").tobytes())
+            keep.append(res[i])
 
         # dequantisation constants, one set per (degree, precision) actually used
         used = sorted({(int(modes[i]), int(cbs[i])) for i in range(n) if modes[i] != MODE_RAW})
@@ -182,6 +228,9 @@ class ZSCLossless:
             consts.write(np.asarray(lo, dtype="<f8").tobytes())
             consts.write(np.asarray(step, dtype="<f8").tobytes())
 
+        res_arr = np.stack(keep) if keep else np.zeros((0, W), dtype=np.int64)
+        rhead, rpack, _ = _pack_residuals(res_arr)
+
         head = io.BytesIO()
         head.write(self.MAGIC)
         head.write(struct.pack("<BB", len(shape), 0 if spec is None else spec + 1))
@@ -191,7 +240,7 @@ class ZSCLossless:
         head.write(struct.pack("<I", len(flat) - n * W))          # tail length
         body = (head.getvalue() + consts.getvalue() + modes.tobytes() + cbs.tobytes()
                 + coef_blob.getvalue() + raw_blob.getvalue()
-                + res_blob.getvalue()
+                + rhead + struct.pack("<I", len(rpack)) + rpack
                 + flat[n * W:].astype(np.uint8).tobytes())
 
         # The container is a CHOICE, and it is the ratio/addressability trade of
@@ -248,7 +297,10 @@ class ZSCLossless:
         nraw = int((modes == MODE_RAW).sum())
         raws = np.frombuffer(b, np.uint8, nraw * W, p); p += nraw * W
         nres = int((modes != MODE_RAW).sum())
-        resid = np.frombuffer(b, "<i2", nres * W, p).reshape(nres, W); p += 2 * nres * W
+        rhead = b[p:p + nres * 3]; p += nres * 3
+        rlen = struct.unpack_from("<I", b, p)[0]; p += 4
+        rpack = b[p:p + rlen]; p += rlen
+        resid = _unpack_residuals(rhead, rpack, nres, W)
         tail = np.frombuffer(b, np.uint8, tail_len, p)
 
         out = np.zeros(n * W + tail_len)
