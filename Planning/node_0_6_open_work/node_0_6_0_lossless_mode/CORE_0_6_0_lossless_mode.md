@@ -94,3 +94,38 @@ expected to move the numbers the same way — better — so these are a
 floor.
 
 Record: `~/Programming/ZSpectralCompression/DevComms/log_003_roundable_to_exact.md` §3.
+
+## answered, 2026-09-09 — and the question was wrong
+
+Measured through the prototype itself, after the fix in
+[leaf_projection_defect](../../node_0_5_findings/node_0_5_4_leaf_projection_defect/CORE_0_5_4_leaf_projection_defect.md).
+
+The criterion "merge while the reconstruction still rounds to the exact
+byte" is `max_err < 0.5/255`, a derived constant. It gives **2.51x** on
+smooth data against `xz -9` at 26.09x, and **0.78x** — expansion — on
+source code.
+
+It is the wrong criterion. It forces short segments (mean 15.8
+samples), and a segment costs four coefficients whatever its length, so
+the coefficients become the dominant cost before a single correction is
+stored.
+
+**Exactness is the correction stream's job, not the merge's.** The
+merge should decide only whether merging is cheaper. Under that
+criterion, still restoring 100% of bytes:
+
+| file | segment | ratio | `xz -9` |
+|---|---|---|---|
+| smooth_1d | 512 | **25.89x** | 26.09x |
+| photo tile | 64 | 1.51x | 1.81x |
+| python_source | 1024 | 1.22x | 3.80x |
+
+2.51x becomes 25.89x — a factor of 10.3 from changing what the merge
+optimises. It is about ten times cheaper to accept 2.7% of samples
+being wrong and correct them than to split so they are right.
+
+**So lossless mode is worth building**, and what it needs is not a
+threshold but two format changes: a correction stream in the payload,
+and a rate-based merge decision in place of the error threshold.
+
+Record: `~/Programming/ZSpectralCompression/DevComms/log_006_lossless_criterion.md`.
