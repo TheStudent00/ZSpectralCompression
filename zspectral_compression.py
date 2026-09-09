@@ -1257,6 +1257,19 @@ class ZSpectralCompressor:
         topology_bytes = topology.numel()
 
         total_compressed_bytes = labels_bytes + c0_bytes + codebook_bytes + topology_bytes
+
+        # ADDED 2026-09-08: the label stream is far from uniform in SEQUENCE even
+        # though its histogram is near-flat (adjacent segments of smooth data get
+        # the same or a neighbouring centroid). Counting it at a flat byte each
+        # makes `ratio` a floor. `ratio_entropy_coded` prices the labels at their
+        # measured order-0 entropy instead, which any range coder would reach.
+        import collections, math as _math
+        _counts = collections.Counter(labels.tolist())
+        _n = max(1, len(labels))
+        _h = -sum((v / _n) * _math.log2(v / _n) for v in _counts.values()) if _n > 1 else 0.0
+        labels_bytes_entropy = int(_math.ceil(_n * _h / 8.0))
+        total_entropy_coded = labels_bytes_entropy + c0_bytes + codebook_bytes + topology_bytes
+
         compression_ratio = raw_bytes / total_compressed_bytes
 
         return {
@@ -1265,6 +1278,8 @@ class ZSpectralCompressor:
             "tokens": N_tokens,
             "k_clusters": K_clusters,
             "ratio": compression_ratio,
+            "ratio_entropy_coded": raw_bytes / max(1, total_entropy_coded),
+            "labels_bytes_entropy": labels_bytes_entropy,
             "breakdown": {
                 "labels": labels_bytes,
                 "c0": c0_bytes,
@@ -1501,7 +1516,6 @@ final_compressor = ZSpectralCompressor(final_interface, k_clusters=optimal_k)
 color_canvas = torch.zeros_like(full_color_tensor, device=device)
 tile_size = 1024
 total_raw_bytes, total_compressed_bytes, total_tokens = 0, 0, 0
-codebook_paid = [False, False, False]
 
 # Calculate total tiles for the progress bar
 total_tiles = math.ceil(h / tile_size) * math.ceil(w / tile_size)
@@ -1524,12 +1538,13 @@ for i in range(3):
 
                     total_raw_bytes += metrics['raw_bytes']
                     total_tokens += metrics['tokens']
+                    # FIXED 2026-09-08: compress() fits a fresh KMeans codebook
+                    # on every call, so a decoder needs one codebook PER TILE.
+                    # The old code charged one per channel and undercounted.
                     total_compressed_bytes += (metrics['breakdown']['labels'] +
                                              metrics['breakdown']['c0'] +
-                                             metrics['breakdown']['topology'])
-                    if not codebook_paid[i]:
-                        total_compressed_bytes += metrics['breakdown']['codebook']
-                        codebook_paid[i] = True
+                                             metrics['breakdown']['topology'] +
+                                             metrics['breakdown']['codebook'])
 
                 # Tick the progress bar forward by 1
                 pbar.update(1)
@@ -1539,7 +1554,9 @@ print(f"Compression Ratio: {total_raw_bytes / total_compressed_bytes:.2f}x")
 print(f"Final Size: {total_compressed_bytes / (1024*1024):.2f} MB")
 
 # Final result back to CPU for saving
-TF.to_pil_image(color_canvas.cpu()).save("jwst_final_goldilocks.jpg", quality=100)
+# FIXED 2026-09-08: was .jpg, which put JPEG artifacts into the figure that
+# compares this reconstruction against the original. PNG is lossless.
+TF.to_pil_image(color_canvas.cpu()).save("jwst_final_goldilocks.png")
 
 # @title
 import matplotlib.pyplot as plt
@@ -1547,7 +1564,7 @@ from PIL import Image
 
 # Load the saved images from the virtual file system
 original_img = Image.open("jwst_image.jpg")
-reconstructed_img = Image.open("jwst_final_goldilocks.jpg")
+reconstructed_img = Image.open("jwst_final_goldilocks.png")
 
 # Set up a massive side-by-side plot
 fig, axes = plt.subplots(1, 2, figsize=(24, 12))
