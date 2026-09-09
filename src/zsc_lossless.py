@@ -140,7 +140,7 @@ class ZSCLossless:
                 best = (total, W, n, pick, store, win)
         return best
 
-    def compress(self, arr):
+    def compress(self, arr, container="lzma"):
         arr = np.asarray(arr, dtype=np.uint8)
         shape = arr.shape
         flat_src = arr.ravel().astype(float)
@@ -161,16 +161,16 @@ class ZSCLossless:
         modes = np.array([p[0] for p in pick], dtype=np.uint8)
         cbs = np.array([p[1] if p[0] != MODE_RAW else 0 for p in pick], dtype=np.uint8)
 
-        coef_blob, resid = io.BytesIO(), np.zeros((n, W), dtype=np.int64)
-        raw_blob = io.BytesIO()
+        coef_blob, raw_blob, res_blob = io.BytesIO(), io.BytesIO(), io.BytesIO()
         for i in range(n):
             deg = modes[i]
             if deg == MODE_RAW:
+                # a raw segment IS its bytes; it carries no residual at all
                 raw_blob.write(win[i].astype(np.uint8).tobytes())
                 continue
             q, (lo, step), res = store[(deg, cbs[i])]
             coef_blob.write(q[i].astype("<i4").tobytes())
-            resid[i] = res[i]
+            res_blob.write(res[i].astype("<i2").tobytes())
 
         # dequantisation constants, one set per (degree, precision) actually used
         used = sorted({(int(modes[i]), int(cbs[i])) for i in range(n) if modes[i] != MODE_RAW})
@@ -191,13 +191,37 @@ class ZSCLossless:
         head.write(struct.pack("<I", len(flat) - n * W))          # tail length
         body = (head.getvalue() + consts.getvalue() + modes.tobytes() + cbs.tobytes()
                 + coef_blob.getvalue() + raw_blob.getvalue()
-                + resid.astype("<i2").tobytes()
+                + res_blob.getvalue()
                 + flat[n * W:].astype(np.uint8).tobytes())
-        return lzma.compress(body, preset=6), chosen_name
+
+        # The container is a CHOICE, and it is the ratio/addressability trade of
+        # log 008. Packed alone, every segment stays independently decodable.
+        # Wrapped in lzma the ratio improves — often a lot, because lzma catches
+        # the repetition a polynomial model structurally cannot see (log 007 §2) —
+        # but the result decodes only from the start.
+        packed = body
+        squeezed = lzma.compress(body, preset=6)
+        best = squeezed if (container == "lzma" and len(squeezed) < len(packed)) else packed
+        tag = b"Z" if best is packed else b"L"
+
+        # Whole-file escape: the format may never cost more than the bytes plus
+        # this header, whatever the input. This is what makes break-even a
+        # guarantee rather than an observation (log 009).
+        stored = b"R" + struct.pack("<B", len(shape)) + b"".join(
+            struct.pack("<I", s_) for s_ in shape) + arr.tobytes()
+        if len(stored) <= len(best) + 1:
+            return stored, "stored"
+        return tag + best, chosen_name
 
     def decompress(self, payload):
-        b = lzma.decompress(payload)
-        p = 0
+        if payload[:1] == b"R":                      # stored verbatim
+            nd = payload[1]
+            p = 2
+            shape = []
+            for _ in range(nd):
+                shape.append(struct.unpack_from("<I", payload, p)[0]); p += 4
+            return np.frombuffer(payload, np.uint8, int(np.prod(shape)), p).reshape(shape).copy()
+        b = lzma.decompress(payload[1:]) if payload[:1] == b"L" else payload[1:]
         assert b[:4] == self.MAGIC
         p = 4
         nd, spec_p = struct.unpack_from("<BB", b, p); p += 2
@@ -223,11 +247,12 @@ class ZSCLossless:
         coefs = np.frombuffer(b, "<i4", ncoef, p); p += 4 * ncoef
         nraw = int((modes == MODE_RAW).sum())
         raws = np.frombuffer(b, np.uint8, nraw * W, p); p += nraw * W
-        resid = np.frombuffer(b, "<i2", n * W, p).reshape(n, W); p += 2 * n * W
+        nres = int((modes != MODE_RAW).sum())
+        resid = np.frombuffer(b, "<i2", nres * W, p).reshape(nres, W); p += 2 * nres * W
         tail = np.frombuffer(b, np.uint8, tail_len, p)
 
         out = np.zeros(n * W + tail_len)
-        ci = ri = 0
+        ci = ri = si = 0
         for i in range(n):
             deg = int(modes[i])
             if deg == MODE_RAW:
@@ -237,7 +262,7 @@ class ZSCLossless:
             q = coefs[ci:ci + k].astype(float); ci += k
             lo, step = consts[(deg, int(cbs[i]))]
             rec = np.clip((q * step + lo) @ basis(W, deg).T, 0, 255).round()
-            out[i * W:(i + 1) * W] = rec + resid[i]
+            out[i * W:(i + 1) * W] = rec + resid[si]; si += 1
         out[n * W:] = tail
 
         spec = None if spec_p == 0 else spec_p - 1
