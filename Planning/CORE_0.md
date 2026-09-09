@@ -57,8 +57,9 @@ sub_nodes:
 
 A representation that describes data of any dimension as a set of
 variable-length polynomial segments laid along a space-filling curve,
-addressed by a merge hierarchy. Compression is one use of that
-representation; local addressability is the other.
+addressed by a merge hierarchy — so that any modality reaches a model
+through one continuous interface. Compression and local addressability
+are consequences of that representation, not its purpose.
 
 ## the two things this project is
 
@@ -76,6 +77,42 @@ judge.
   touches a small, contiguous set of segments. Measured: a 64x64 edit
   in a 1024x1024 field touches 1 chunk under Z-order against 16 under
   row order.
+
+## why this exists
+
+Recorded from the owner, 2026-09-09, and it inverts the framing above:
+
+> i created it to solve the universal input problem for a generalized
+> intelligent model (`~/Programming/GraphModel`). the spirit of it
+> wasnt compression at all but if we can guarantee that under most (if
+> not all) conditions that ZSC at worst breaks even in compression,
+> its a massive unexpected victory.
+
+So the primary object is the **representation**, not the codec. In
+`~/Programming/GraphModel/ComponentDefense/Signal/DesignUpdates_2.md`
+the same structure appears as the atomic unit of the Fractal-Aperture
+Spectral Transformer:
+
+> **Atomic Unit: The Spectral Token** — Structure: A single segment,
+> Order 3 Chebyshev Spline. Heteroscedastic Uncertainty: Modeled via a
+> Dual-Curve Interval ([L, U]) to capture skew.
+
+That resolves three things this tree had recorded as puzzles:
+
+- **[algebra](node_0_0_algebra/CORE_0_0_algebra.md) is not a side
+  branch.** `add`, `multiply`, `matmul`, `composition` and `integrate`
+  are the model's message passing, not spare capability.
+- **The `meta` channels are not dead weight.** `z_real, z_virt,
+  m_real, m_virt` are GraphModel's complex neural physics,
+  `M = m_real + i*m_virt`. They do not reach the compressed payload
+  because compression is not what they are for.
+- **The dual lower/upper curve is not redundancy.** It is
+  heteroscedastic uncertainty carried through every operation.
+
+**The compression result is therefore a constraint to satisfy, not a
+goal to maximise.** The bar the owner set is break-even, and
+[break_even_guarantee](node_0_5_findings/node_0_5_5_break_even_guarantee/CORE_0_5_5_break_even_guarantee.md)
+measures whether it is met.
 
 ## provenance
 
