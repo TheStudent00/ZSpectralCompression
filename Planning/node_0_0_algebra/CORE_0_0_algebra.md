@@ -81,8 +81,16 @@ Two facts about this module that matter for the rest of the tree:
   Every axis index in the module is derived from the key lists in one
   class, so a change to the representation is one edit.
 
-## open
+## settled 2026-09-09 — this is the point, not a side branch
 
-- Whether the function-arithmetic half belongs in this repo at all,
-  or is its own project, is unsettled. It is recorded here because it
-  exists in the prototype, not because the placement is decided.
+An earlier draft of this node recorded "whether the function-arithmetic
+half belongs in this repo at all" as unsettled. the owner has answered it:
+ZSC exists to solve the universal input problem for
+`~/Programming/GraphModel`, whose Fractal-Aperture Spectral Transformer
+uses this exact structure as its atomic unit. `add`, `multiply`,
+`matmul`, `composition` and `integrate` are that model's message
+passing.
+
+So the note above — that nothing in the compression path calls this
+module — is still true and is no longer a defect. The compression path
+is the smaller of the two uses.

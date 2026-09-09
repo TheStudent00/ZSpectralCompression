@@ -48,7 +48,7 @@ sub_nodes:
 - [index_stream_entropy](node_0_5_2_index_stream_entropy/CORE_0_5_2_index_stream_entropy.md) — Whether the compressed output can be compressed again.
 - [edit_locality](node_0_5_3_edit_locality/CORE_0_5_3_edit_locality.md) — What the Z-order traversal is worth when data changes.
 - [leaf_projection_defect](node_0_5_4_leaf_projection_defect/CORE_0_5_4_leaf_projection_defect.md) — The mechanism the codec compresses by had never run.
-- [break_even_guarantee](node_0_5_5_break_even_guarantee/CORE_0_5_5_break_even_guarantee.md)
+- [break_even_guarantee](node_0_5_5_break_even_guarantee/CORE_0_5_5_break_even_guarantee.md) — Whether ZSC ever costs more than storing the bytes raw.
 
 ## definition
 

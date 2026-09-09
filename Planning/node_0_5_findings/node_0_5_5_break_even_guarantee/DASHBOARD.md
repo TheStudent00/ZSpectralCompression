@@ -2,7 +2,7 @@
 <!-- Produced by ~/Programming/PlanPlan/framework/generate_dashboards.py from this node's own sub-tree. Hand edits are lost the -->
 <!-- next time the tool runs; re-run it instead of editing this file. -->
 
-# DASHBOARD — Planning
+# DASHBOARD — node_0_5_5_break_even_guarantee
 
 A rollup over this node's own sub-tree (itself plus everything beneath it). Regenerated, not edited.
 
@@ -10,31 +10,25 @@ A rollup over this node's own sub-tree (itself plus everything beneath it). Rege
 
 | field | value |
 | --- | --- |
-| id | `zspectral` |
+| id | `zspectral.findings.break_even_guarantee` |
 | status | draft |
-| designation | grouping |
+| designation | finding |
 
 ## sub-tree
 
-sub-node count: 43
+sub-node count: 0
 
 ### status breakdown
 
 | status | count |
 | --- | --- |
-| draft | 44 |
+| draft | 1 |
 
 ### designation breakdown
 
 | designation | count |
 | --- | --- |
-| code (class) | 23 |
-| code (function) | 1 |
-| code (method) | 1 |
-| code (module) | 7 |
-| finding | 6 |
-| grouping | 3 |
-| work | 3 |
+| finding | 1 |
 
 ## blocked
 
@@ -47,7 +41,7 @@ counted by scanning every PROGRESS.md bullet in this sub-tree for these words; a
 | status word | bullet count |
 | --- | --- |
 | planned | 0 |
-| in-progress | 1 |
+| in-progress | 0 |
 | done | 0 |
 | blocked | 0 |
 | deferred | 0 |

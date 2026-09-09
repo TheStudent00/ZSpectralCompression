@@ -16,19 +16,19 @@ A rollup over this node's own sub-tree (itself plus everything beneath it). Rege
 
 ## sub-tree
 
-sub-node count: 5
+sub-node count: 6
 
 ### status breakdown
 
 | status | count |
 | --- | --- |
-| draft | 6 |
+| draft | 7 |
 
 ### designation breakdown
 
 | designation | count |
 | --- | --- |
-| finding | 5 |
+| finding | 6 |
 | grouping | 1 |
 
 ## blocked
