@@ -2,6 +2,10 @@ import numpy as np, torch, math
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.gridspec import GridSpec
+BG="#12151c"; FG="#dfe6f0"; GRID="#2b3240"
+plt.rcParams.update({"figure.facecolor":BG,"axes.facecolor":BG,"savefig.facecolor":BG,
+    "text.color":FG,"axes.labelcolor":FG,"xtick.color":FG,"ytick.color":FG,
+    "axes.edgecolor":GRID,"grid.color":GRID,"axes.titlecolor":FG,"font.size":10})
 src=open("/tmp/zsc.py").read(); g={}
 exec(compile(src[:src.index("def test_ultimate_quadtree_compression")],"p","exec"),g)
 
@@ -16,7 +20,7 @@ def zsc(arr,thr):
 
 def draw(axU,axL,arr,thr,title,note):
     sl,coef,orig=zsc(arr,thr); n=len(arr)
-    axU.bar(np.arange(n),orig[:n],width=0.86,color="#c3cfe0",edgecolor="none",zorder=1)
+    axU.bar(np.arange(n),orig[:n],width=0.86,color="#4a5568",edgecolor="none",zorder=1)
     patch=np.zeros(n,dtype=int); segs=0
     for k,(s,e) in enumerate(sl):
         if s>=n: continue
@@ -25,16 +29,16 @@ def draw(axU,axL,arr,thr,title,note):
         rec=np.clip((A@coef[k])*255.0,0,255).round()
         patch[s:min(e,n)]=(orig[s:min(e,n)].round()-rec[:min(e,n)-s]).astype(int)
         xd=np.linspace(-1,1,max(80,L*10)); Ad=np.stack([np.ones_like(xd),xd,2*xd**2-1,4*xd**3-3*xd],1)
-        axU.plot(np.linspace(s,e-1,len(xd)),(Ad@coef[k])*255.0,color="#b3324a",lw=1.9,zorder=3)
-        axU.axvline(s-0.5,color="#59708c",lw=0.8,ls=":",zorder=2)
+        axU.plot(np.linspace(s,e-1,len(xd)),(Ad@coef[k])*255.0,color="#ff6b8a",lw=1.9,zorder=3)
+        axU.axvline(s-0.5,color="#8fa3bf",lw=0.8,ls=":",zorder=2)
     ex=100.0*np.mean(patch==0)
     axU.set_title("%s\n%d segments over %d bytes (mean %.1f)  |  %.1f%% need NO patch  |  %s"
                   %(title,segs,n,n/segs,ex,note),fontsize=10,loc="left")
     axU.set_xlim(-1,n); axU.set_ylim(0,265); axU.set_ylabel("byte value")
     axU.set_xticklabels([])
     axL.bar(np.arange(n),patch,width=0.86,
-            color=np.where(patch==0,"#dfe5ee","#d98b3a"),edgecolor="none")
-    axL.axhline(0,color="#59708c",lw=0.6)
+            color=np.where(patch==0,"#2b3240","#ffb454"),edgecolor="none")
+    axL.axhline(0,color="#8fa3bf",lw=0.6)
     axL.set_xlim(-1,n); axL.set_ylabel("patch")
     m=max(4,int(np.abs(patch).max())); axL.set_ylim(-m*1.15,m*1.15)
 

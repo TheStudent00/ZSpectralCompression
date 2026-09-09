@@ -170,3 +170,92 @@ the smooth panel has **3.8%** needing no patch — nearly every byte is
 corrected — and it is the panel that compresses. What matters is the
 *entropy* of the patch stream, not how many entries are zero. Many
 tiny patches are cheap; few large ones are not.
+
+---
+
+## 9. Amendment 2026-09-09 — basis family, word size, recursion
+
+Three of the owner's questions, measured. Tools:
+`Tools/sweep_basis_and_wordsize.py`, `Tools/plot_recursion.py`.
+
+### 9.1 A different basis does not rescue text
+
+the owner: *"i was referring more broadly wrt basis. idk, something that
+fits discrete patterns better."* Walsh-Hadamard and Haar are exactly
+that — bases built from square waves rather than smooth curves, which
+represent a sharp jump in one coefficient where a polynomial needs
+high degree. Each basis given its own best window, coefficient count
+and precision; every configuration lossless:
+
+| file | chebyshev | dct | walsh | haar | `xz -9` |
+|---|---|---|---|---|---|
+| python_source | 1.22x | 1.22x | 1.23x | 1.23x | **3.80x** |
+| english_prose | 1.29x | 1.29x | 1.29x | 1.29x | **2.72x** |
+| elf_binary | 1.03x | 1.03x | 1.07x | 1.07x | **3.31x** |
+| photo tile | 1.53x | 1.55x | 1.56x | 1.56x | **1.81x** |
+| smooth_1d | **25.89x** | 13.99x | 7.21x | 7.21x | 26.09x |
+
+Two readings:
+
+- **The basis is a knob inside the wrong model class.** Square-wave
+  bases move text from 1.22x to 1.23x. Every fixed transform over a
+  local window shares the same blind spot, because none of them can
+  express repetition at a distance or symbolic context — §2.
+- **Chebyshev is the right choice for what ZSC is for.** 25.89x
+  against 7.21x for the square-wave bases on smooth data. Swapping it
+  out would cost 3.6x where the method works and buy 0.01x where it
+  does not.
+
+### 9.2 Smaller words make it worse, with one exception
+
+Each byte split into sub-words, every sub-stream compressed
+separately with its best basis, bits summed:
+
+| file | 8-bit | two 4-bit | four 2-bit | eight 1-bit |
+|---|---|---|---|---|
+| python_source | **1.23x** | 1.19x | 1.25x | 1.14x |
+| english_prose | 1.29x | **1.33x** | 1.31x | 1.24x |
+| elf_binary | **1.07x** | 0.98x | 1.00x | 0.99x |
+| photo tile | **1.56x** | 1.37x | 1.19x | 0.96x |
+| smooth_1d | **25.89x** | 6.96x | 3.99x | 4.21x |
+
+the owner expected no improvement and was right. The mechanism is the
+**carry boundary**: 127 and 128 differ by one, but their high nibbles
+are 7 and 8 and their low nibbles are 15 and 0. Splitting a byte
+turns a small numeric step into a large one in both sub-streams,
+which destroys exactly the property this model exploits. Smooth data
+loses the most, 25.89x to 6.96x.
+
+The exception is real though small: **English prose improves, 1.29x to
+1.33x**, because ASCII high nibbles are nearly constant for lowercase
+text (0x6 and 0x7), so that sub-stream is almost a run. This is the
+same reasoning behind bit-plane coding in JPEG2000 — which applies it
+to wavelet coefficients in sign-magnitude form, not to raw bytes,
+precisely to avoid the carry boundary.
+
+### 9.3 Recursion gains nothing, on any file
+
+the owner: *"would it be possible to use it to apply ZSC again if it creates
+lower energy data?"*
+
+| file | patch entropy | ZSC on the patches | verdict |
+|---|---|---|---|
+| python_source | 215,071 b | 216,247 b | no gain |
+| english_prose | 206,182 b | 207,462 b | no gain |
+| elf_binary | 255,150 b | 253,347 b | no gain |
+| photo tile | 137,881 b | 139,161 b | no gain |
+| smooth_1d | 6,476 b | 7,756 b | no gain |
+
+In every case a second pass costs *more* than entropy-coding the
+patches flat, because it pays for coefficients that buy nothing.
+
+**Lower energy is not the same as more compressible.** The fit removes
+precisely the component the model can see; what remains is by
+construction the component it cannot. The spectrum in
+`Tools/plot_recursion.py` shows it directly: the original has a strong
+low-frequency peak decaying across the band, and the patch stream is
+flat at every frequency — white noise.
+
+This generalises past this codec: **iterating any compressor cannot
+help.** If a second pass found structure, the first pass's model was
+incomplete and should have been improved instead.
