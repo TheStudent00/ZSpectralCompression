@@ -666,7 +666,17 @@ class _BaseLeafMinter:
         return raw_1d_data.view(-1, chunk_size)
 
     def _project(self, patches):
-        return torch.matmul(patches, self.leaf_basis)
+        # FIXED 2026-09-08: was `matmul(patches, self.leaf_basis)`, missing the
+        # transpose. leaf_basis is pinv(A) with A shaped [points, basis], so the
+        # projection is `patches @ pinv(A).T` — the same form _DualCurveFitter
+        # already uses at stage 4 (`stacked_data @ A_pinv.T`).
+        #
+        # Without it the level-0 reconstruction was wrong by up to the full
+        # dynamic range (measured: 0.9437 on a patch spanning 0.30), so every
+        # node in the pyramid carried a nonsense max_err of 1.2 to 2.6 and the
+        # walker never merged anything at any threshold. The adaptive
+        # segmentation — the mechanism the codec compresses BY — never ran.
+        return torch.matmul(patches, self.leaf_basis.t())
 
     def _calculate_error(self, patches, coeffs_mu):
         recon = torch.matmul(coeffs_mu, self.recon_basis.t())
