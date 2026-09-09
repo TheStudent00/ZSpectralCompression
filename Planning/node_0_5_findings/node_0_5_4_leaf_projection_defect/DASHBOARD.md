@@ -2,7 +2,7 @@
 <!-- Produced by ~/Programming/PlanPlan/framework/generate_dashboards.py from this node's own sub-tree. Hand edits are lost the -->
 <!-- next time the tool runs; re-run it instead of editing this file. -->
 
-# DASHBOARD — node_0_5_findings
+# DASHBOARD — node_0_5_4_leaf_projection_defect
 
 A rollup over this node's own sub-tree (itself plus everything beneath it). Regenerated, not edited.
 
@@ -10,26 +10,25 @@ A rollup over this node's own sub-tree (itself plus everything beneath it). Rege
 
 | field | value |
 | --- | --- |
-| id | `zspectral.findings` |
+| id | `zspectral.findings.leaf_projection_defect` |
 | status | draft |
-| designation | grouping |
+| designation | finding |
 
 ## sub-tree
 
-sub-node count: 5
+sub-node count: 0
 
 ### status breakdown
 
 | status | count |
 | --- | --- |
-| draft | 6 |
+| draft | 1 |
 
 ### designation breakdown
 
 | designation | count |
 | --- | --- |
-| finding | 5 |
-| grouping | 1 |
+| finding | 1 |
 
 ## blocked
 

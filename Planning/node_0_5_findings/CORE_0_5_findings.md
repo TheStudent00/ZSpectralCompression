@@ -20,6 +20,8 @@ sub_nodes:
       path: node_0_5_2_index_stream_entropy/CORE_0_5_2_index_stream_entropy.md
     - name: edit_locality
       path: node_0_5_3_edit_locality/CORE_0_5_3_edit_locality.md
+    - name: leaf_projection_defect
+      path: node_0_5_4_leaf_projection_defect/CORE_0_5_4_leaf_projection_defect.md
 ---
 
 # CORE 0_5 — findings
@@ -43,6 +45,7 @@ sub_nodes:
 - [codebook_tradeoff](node_0_5_1_codebook_tradeoff/CORE_0_5_1_codebook_tradeoff.md) — What the k-means codebook does to the cost, measured 2026-09-08 at K = 256 against the same files.
 - [index_stream_entropy](node_0_5_2_index_stream_entropy/CORE_0_5_2_index_stream_entropy.md) — Whether the compressed output can be compressed again.
 - [edit_locality](node_0_5_3_edit_locality/CORE_0_5_3_edit_locality.md) — What the Z-order traversal is worth when data changes.
+- [leaf_projection_defect](node_0_5_4_leaf_projection_defect/CORE_0_5_4_leaf_projection_defect.md) — The mechanism the codec compresses by had never run.
 
 ## definition
 
@@ -58,6 +61,10 @@ what harness — and which claims the measurements do not support.
   histogram carries 7.56 of 8 bits drops to 0.32 bits per byte.
 - **The codebook shifts cost between coefficients and residual**, and
   which way it shifts depends on the data.
+- **The merge had never run.** `_BaseLeafMinter._project` was missing a
+  transpose, so every pyramid error was nonsense and the walker kept
+  nothing above the leaves at any threshold. Fixed 2026-09-08; smooth
+  data went from 1.52x to 17.03x.
 - **The index stream is far from incompressible.** Its symbols look
   uniform and its *sequence* does not: 7.41 bits per label by
   histogram, 0.85 conditioned on the previous label.
