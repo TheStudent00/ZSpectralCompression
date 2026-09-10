@@ -1,12 +1,12 @@
 # log 009 — the break-even bar, and what ZSC is actually for
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-09 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-09 by
 Claude. Airlock `sandbox-runner`. Tool: `Tools/test_break_even.py`.
 
 the owner, 2026-09-09:
 
 > i created it to solve the universal input problem for a generalized
-> intelligent model (`~/Programming/GraphModel`). the spirit of it
+> intelligent model (`~/Programming/PUBLIC/GraphModel`). the spirit of it
 > wasnt compression at all but if we can guarantee that under most (if
 > not all) conditions that ZSC at worst breaks even in compression,
 > its a massive unexpected victory.
@@ -18,7 +18,7 @@ the owner, 2026-09-09:
 The primary object is the **representation**. Compression is a
 constraint to satisfy, not a goal to maximise.
 
-`~/Programming/GraphModel/ComponentDefense/Signal/DesignUpdates_2.md`
+`~/Programming/PUBLIC/GraphModel/ComponentDefense/Signal/DesignUpdates_2.md`
 carries the same structure as the atomic unit of the Fractal-Aperture
 Spectral Transformer:
 
@@ -123,7 +123,7 @@ GraphModel is likely to feed it — images, sampled signals, N-D arrays
 
 ## 5. See also
 
-- `~/Programming/GraphModel/ComponentDefense/Signal/DesignUpdates_2.md`
+- `~/Programming/PUBLIC/GraphModel/ComponentDefense/Signal/DesignUpdates_2.md`
   — the FAST specification quoted in §1.
-- `~/Programming/ZSpectralCompression/DevComms/log_008_ratio_versus_usability.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_008_ratio_versus_usability.md`
   — the matched-granularity comparison this extends.

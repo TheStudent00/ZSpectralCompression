@@ -1,6 +1,6 @@
 # log 011 — the upgraded codec, built and round-trip verified
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-09 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-09 by
 Claude. Airlock `sandbox-runner` (torch, numpy, sklearn installed).
 New module: `src/zsc_lossless.py`. Tests:
 `Tools/test_codec_roundtrip.py`, `Tools/test_game_data.py`.
@@ -113,6 +113,6 @@ is a statement about what the data *is*.
 
 ## 5. See also
 
-- `~/Programming/ZSpectralCompression/src/zsc_lossless.py` — the module.
-- `~/Programming/ZSpectralCompression/DevComms/log_010_time_and_higher_dimensions.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/src/zsc_lossless.py` — the module.
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_010_time_and_higher_dimensions.md`
   — where the traversal finding came from.

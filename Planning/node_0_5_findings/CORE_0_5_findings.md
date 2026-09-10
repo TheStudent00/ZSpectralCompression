@@ -85,4 +85,4 @@ and run in the Airlock `sandbox-runner` container on 2026-09-08.
   prototype, not a ceiling.** The per-window residual entropies are a
   fair reading of whether the basis fits the data at all; the totals
   are not a fair reading of the prototype's ratio.
-- Full record: `~/Programming/ZSpectralCompression/DevComms/log_001_one_dimensional_measurements.md`.
+- Full record: `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_001_one_dimensional_measurements.md`.

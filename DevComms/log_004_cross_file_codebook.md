@@ -1,6 +1,6 @@
 # log 004 — the cross-file codebook, measured; and the metrics, restated as ratios
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-08 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-08 by
 Claude. Airlock `sandbox-runner`; `numpy`, `scikit-learn`, `pillow`
 and `zstandard` were installed into it for this work (see §4).
 
@@ -135,7 +135,7 @@ JPEG or WebP at matched reconstruction error, which has not been run.
 
 the owner: "sure. and we can fix whatever else also."
 
-Three edits to `~/Programming/ZSpectralCompression/zspectral_compression.py`.
+Three edits to `~/Programming/PUBLIC/ZSpectralCompression/zspectral_compression.py`.
 
 | # | what | where |
 |---|---|---|
@@ -153,7 +153,7 @@ recording:
 
 - `torch` is not in the Airlock image, and installing it needs
   `download.pytorch.org` added to the egress allowlist
-  (`~/Programming/Airlock/allow.sh add ...`) — a standing change to a
+  (`~/Programming/PUBLIC/Airlock/allow.sh add ...`) — a standing change to a
   security boundary, so not made unilaterally.
 - **`jwst_image.jpg` is not in the repository.** Only the output,
   `jwst_final_goldilocks.jpg`, is committed. The headline 4.17x run is
@@ -180,7 +180,7 @@ the running `sandbox-runner` container with its own `pip`. That is the
 rule — a missing tool is installed into Airlock, never into a host
 environment — but it is the *impermanent* form of it: the packages do
 not survive a rebuild. The durable form is an entry in
-`~/Programming/Airlock/Containerfile`, which belongs to Airlock's own
+`~/Programming/PUBLIC/Airlock/Containerfile`, which belongs to Airlock's own
 repo and is a separate change.
 
 `torch` could not be installed: the proxy returned
@@ -190,7 +190,7 @@ repo and is a separate change.
 
 ## 5. See also
 
-- `~/Programming/ZSpectralCompression/DevComms/log_003_roundable_to_exact.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_003_roundable_to_exact.md`
   — the round-exact measurements and the three defects fixed here.
-- `~/Programming/ZSpectralCompression/Planning/node_0_3_container/node_0_3_1_vector_quantizer/CORE_0_3_1_vector_quantizer.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/Planning/node_0_3_container/node_0_3_1_vector_quantizer/CORE_0_3_1_vector_quantizer.md`
   — the node this log's §2 is about.

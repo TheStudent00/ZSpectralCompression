@@ -1,6 +1,6 @@
 # log 008 — compression against usability, and a correction to every comparison so far
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-09 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-09 by
 Claude. Airlock `sandbox-runner`. Tool:
 `Tools/compare_matched_granularity.py`.
 
@@ -174,7 +174,7 @@ at the same time.**
 
 ## 7. See also
 
-- `~/Programming/ZSpectralCompression/DevComms/log_007_model_classes.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_007_model_classes.md`
   §6 — what a ZSC payload can do that an encoding cannot.
-- `~/Programming/ZSpectralCompression/Planning/node_0_5_findings/node_0_5_3_edit_locality/CORE_0_5_3_edit_locality.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/Planning/node_0_5_findings/node_0_5_3_edit_locality/CORE_0_5_3_edit_locality.md`
   — the N-dimensional version of the same property.

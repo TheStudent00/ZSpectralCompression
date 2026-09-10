@@ -1,6 +1,6 @@
 # log 002 — the codebook, the index stream, and the reverse-engineered plan
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-08 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-08 by
 Claude. Measurements ran in the Airlock `sandbox-runner` container in
 pure Python; nothing was installed into it.
 
@@ -101,7 +101,7 @@ the owner:
 > was painful built with earlier LL models.
 
 Built 2026-09-08 against
-`~/Programming/PlanPlan/framework/PROTOCOL.md`, from a full read of
+`~/Programming/PRIVATE/PlanPlan/framework/PROTOCOL.md`, from a full read of
 the 1,568-line `zspectral_compression.py`.
 
 | measure | value |
@@ -110,7 +110,7 @@ the 1,568-line `zspectral_compression.py`.
 | depth | 4 levels (root, module, class-group, class) |
 | `render_plan.py` grammar problems | **0** |
 | `check_plans.py` | **0 errors, 1 warning** (see §4) |
-| rendered view | `~/Programming/ZSpectralCompression/Planning/plan.html` |
+| rendered view | `~/Programming/PUBLIC/ZSpectralCompression/Planning/plan.html` |
 
 Level 1 is the pipeline plus what has been learned about it:
 
@@ -142,7 +142,7 @@ Level 1 is the pipeline plus what has been learned about it:
 ### Left for the owner, per PROTOCOL §2
 
 - The tree carries `super_node: null`. Whether the project hangs under
-  `~/Programming/PseudoCoupHQ/Planning/node_0_0_projects/` is a
+  `~/Programming/PRIVATE/PseudoCoupHQ/Planning/node_0_0_projects/` is a
   level-0 question.
 - `node_0_6_2_chunker_framing` asks whether the project's centre is
   the codec or the addressing scheme. That is a question about what
@@ -169,11 +169,11 @@ Level 1 is the pipeline plus what has been learned about it:
 So the checker carries a rule from before the `## metadata` block was
 introduced (§1 dates that to 2026-08-23). Confirmed not local to this
 tree: the same warning fires on the reference project,
-`~/Programming/PseudoCoup_v6/Planning`, and on
-`~/Programming/GitSpaceTime/Planning`.
+`~/Programming/PRIVATE/PseudoCoup_v6/Planning`, and on
+`~/Programming/PRIVATE/GitSpaceTime/Planning`.
 
 **Not fixed here.** The fix is one line in
-`~/Programming/PlanPlan/framework/check_plans.py`, and PlanPlan is a
+`~/Programming/PRIVATE/PlanPlan/framework/check_plans.py`, and PlanPlan is a
 higher-level document set. Recorded so it is not mistaken for a defect
 in this tree.
 
@@ -181,9 +181,9 @@ in this tree.
 
 ## 5. See also
 
-- `~/Programming/ZSpectralCompression/DevComms/log_001_one_dimensional_measurements.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_001_one_dimensional_measurements.md`
   — the 1D and edit-locality measurements this log continues.
-- `~/Programming/ZSpectralCompression/Planning/CORE_0.md` — the plan's
+- `~/Programming/PUBLIC/ZSpectralCompression/Planning/CORE_0.md` — the plan's
   root.
-- `~/Programming/PlanPlan/framework/PROTOCOL.md` — the framework this
+- `~/Programming/PRIVATE/PlanPlan/framework/PROTOCOL.md` — the framework this
   tree conforms to; §4 above is about its checker.

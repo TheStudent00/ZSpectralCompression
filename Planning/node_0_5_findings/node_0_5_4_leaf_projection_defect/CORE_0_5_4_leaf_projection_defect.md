@@ -89,4 +89,4 @@ two stages disagreed and the wrong one fed every error estimate.
 - **nothing in logs 001-004** — those used an independently written
   fixed-window fit and never called the prototype.
 
-Record: `~/Programming/ZSpectralCompression/DevComms/log_005_leaf_projection_defect.md`.
+Record: `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_005_leaf_projection_defect.md`.

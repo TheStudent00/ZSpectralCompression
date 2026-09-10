@@ -83,13 +83,13 @@ judge.
 Recorded from the owner, 2026-09-09, and it inverts the framing above:
 
 > i created it to solve the universal input problem for a generalized
-> intelligent model (`~/Programming/GraphModel`). the spirit of it
+> intelligent model (`~/Programming/PUBLIC/GraphModel`). the spirit of it
 > wasnt compression at all but if we can guarantee that under most (if
 > not all) conditions that ZSC at worst breaks even in compression,
 > its a massive unexpected victory.
 
 So the primary object is the **representation**, not the codec. In
-`~/Programming/GraphModel/ComponentDefense/Signal/DesignUpdates_2.md`
+`~/Programming/PUBLIC/GraphModel/ComponentDefense/Signal/DesignUpdates_2.md`
 the same structure appears as the atomic unit of the Fractal-Aperture
 Spectral Transformer:
 
@@ -117,7 +117,7 @@ measures whether it is met.
 ## provenance
 
 The 1,568-line prototype at
-`~/Programming/ZSpectralCompression/zspectral_compression.py` came
+`~/Programming/PUBLIC/ZSpectralCompression/zspectral_compression.py` came
 first; this plan was reverse-engineered from it on 2026-09-08 at the owner's
 request, the prototype having been built with earlier models. Where
 the plan and the prototype disagree, the prototype is the fact and the
@@ -126,5 +126,5 @@ plan is the defect, until the owner settles otherwise.
 ## open at the root
 
 - This tree carries `super_node: null`. Whether the project hangs
-  under `~/Programming/PseudoCoupHQ/Planning/node_0_0_projects/` is a
+  under `~/Programming/PRIVATE/PseudoCoupHQ/Planning/node_0_0_projects/` is a
   level-0 question and therefore the owner's, per PROTOCOL §2.

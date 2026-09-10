@@ -14,7 +14,7 @@ status: in-progress
 
 | item | status | evidence |
 |---|---|---|
-| prototype exists and runs on images | done, undated (predates this plan) | `~/Programming/ZSpectralCompression/zspectral_compression.py`, `ZSpectral_Compression.ipynb` |
+| prototype exists and runs on images | done, undated (predates this plan) | `~/Programming/PUBLIC/ZSpectralCompression/zspectral_compression.py`, `ZSpectral_Compression.ipynb` |
 | plan reverse-engineered from the prototype | in-progress, opened 2026-09-08 | this tree |
 | 1D behaviour measured | done 2026-09-08 | `DevComms/log_001_one_dimensional_measurements.md` §2 |
 | codebook cost/residual trade measured | done 2026-09-08 | log_001 §2, follow-up run |

@@ -1,6 +1,6 @@
 # log 007 — what ZSC's model can and cannot see
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-09 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-09 by
 Claude. Airlock `sandbox-runner`.
 
 the owner, 2026-09-09:
@@ -115,9 +115,9 @@ which §5 says is the weaker of the two.
 
 ## 7. See also
 
-- `~/Programming/ZSpectralCompression/DevComms/log_006_lossless_criterion.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_006_lossless_criterion.md`
   — the rate criterion, and the lossy-plus-corrections structure.
-- `~/Programming/ZSpectralCompression/Planning/node_0_5_findings/node_0_5_0_one_dimensional_behaviour/CORE_0_5_0_one_dimensional_behaviour.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/Planning/node_0_5_findings/node_0_5_0_one_dimensional_behaviour/CORE_0_5_0_one_dimensional_behaviour.md`
 
 ---
 

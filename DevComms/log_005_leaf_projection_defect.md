@@ -1,11 +1,11 @@
 # log 005 — the leaf projection was transposed, and the merge never ran
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-08 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-08 by
 Claude. Airlock `sandbox-runner`, now carrying `torch 2.14.0+cpu`,
 `torchvision`, `numpy`, `scikit-learn`, `pillow`, `zstandard`, `tqdm`
 and `matplotlib`. `download.pytorch.org` and `download-r2.pytorch.org`
 were added to the egress allowlist with the owner's permission
-(`bash ~/Programming/Airlock/allow.sh add ...`).
+(`bash ~/Programming/PUBLIC/Airlock/allow.sh add ...`).
 
 ---
 
@@ -147,8 +147,8 @@ payload, which the format does not currently carry.
 
 ## 7. See also
 
-- `~/Programming/ZSpectralCompression/zspectral_compression.py` —
+- `~/Programming/PUBLIC/ZSpectralCompression/zspectral_compression.py` —
   `_BaseLeafMinter._project` carries the fix and the reason.
-- `~/Programming/ZSpectralCompression/Planning/node_0_2_codec/node_0_2_0_encoder/node_0_2_0_0_base_leaf_minter/CORE_0_2_0_0_base_leaf_minter.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/Planning/node_0_2_codec/node_0_2_0_encoder/node_0_2_0_0_base_leaf_minter/CORE_0_2_0_0_base_leaf_minter.md`
   — the node for the defective stage. Its claim that "the leaf fit is
   algebraically exact" was true of the design and false of the code.

@@ -1,6 +1,6 @@
 # log 006 — the lossless criterion is a rate criterion, not an error criterion
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-09 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-09 by
 Claude. Airlock `sandbox-runner` with torch. Follows
 `log_005_leaf_projection_defect.md`, without which none of this could
 be measured.
@@ -98,7 +98,7 @@ accordingly.
 
 ## 6. See also
 
-- `~/Programming/ZSpectralCompression/DevComms/log_005_leaf_projection_defect.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_005_leaf_projection_defect.md`
   — the fix that made the walker function at all.
-- `~/Programming/ZSpectralCompression/DevComms/log_003_roundable_to_exact.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_003_roundable_to_exact.md`
   §3 — the fixed-length sweep that first showed long segments winning.

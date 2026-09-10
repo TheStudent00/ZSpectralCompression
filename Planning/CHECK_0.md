@@ -16,7 +16,7 @@ id: zspectral.check
 Does the tree describe the prototype that exists, rather than a
 system someone would like to exist?
 
-- Read `~/Programming/ZSpectralCompression/zspectral_compression.py`.
+- Read `~/Programming/PUBLIC/ZSpectralCompression/zspectral_compression.py`.
 - Every class in it appears as a node in this tree, or is named in a
   node's `## design` with `realize: false`.
 - No node in this tree names code that is not in that file. Where one

@@ -1,6 +1,6 @@
 # log 001 — ZSpectral on 1D data, measured for the first time
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-08 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-08 by
 Claude. All compute ran in the Airlock `sandbox-runner` container, in
 pure Python (no numpy in that image, and nothing was installed into
 it).
@@ -68,7 +68,7 @@ smooth_2d_raw        7.44   1.31   1.03    2.88    1.26     1000   0.32
 
 Sources: `cpp_source` = 433 KB of concatenated Blink `.cc` files;
 `python_source` = `zspectral_compression.py`; `english_prose` =
-`~/Programming/DevComms/LLM_communication_protocol.md`; `elf_binary` =
+`~/Programming/PRIVATE/DevComms/LLM_communication_protocol.md`; `elf_binary` =
 first 1 MB of `/usr/bin/restic`; `smooth_1d` = sum of three
 low-frequency sines quantised to bytes; `smooth_2d_raw` = a
 1000×1000 raw greyscale radial cosine field.
@@ -263,9 +263,9 @@ of the system.
 
 ## 6. See also
 
-- `~/Programming/ZSpectralCompression/zspectral_compression.py` — the
+- `~/Programming/PUBLIC/ZSpectralCompression/zspectral_compression.py` — the
   codec; `_ZCurveRouter`, `_TopologicalPyramid` and `_PyramidWalker`
   are the parts §4 is about.
-- `~/Programming/GitSpaceTime/DevComms/log_002_compression_and_storage_layer.md`
+- `~/Programming/PRIVATE/GitSpaceTime/DevComms/log_002_compression_and_storage_layer.md`
   §2.1 — the chunk-level dedup measurement this log's §4 extends into
   two dimensions.

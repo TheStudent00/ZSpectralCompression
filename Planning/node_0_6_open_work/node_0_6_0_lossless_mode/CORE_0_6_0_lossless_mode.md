@@ -93,7 +93,7 @@ it reads 2D data in raster order rather than Z-order. Both are
 expected to move the numbers the same way — better — so these are a
 floor.
 
-Record: `~/Programming/ZSpectralCompression/DevComms/log_003_roundable_to_exact.md` §3.
+Record: `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_003_roundable_to_exact.md` §3.
 
 ## answered, 2026-09-09 — and the question was wrong
 
@@ -128,4 +128,4 @@ being wrong and correct them than to split so they are right.
 threshold but two format changes: a correction stream in the payload,
 and a rate-based merge decision in place of the error threshold.
 
-Record: `~/Programming/ZSpectralCompression/DevComms/log_006_lossless_criterion.md`.
+Record: `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_006_lossless_criterion.md`.

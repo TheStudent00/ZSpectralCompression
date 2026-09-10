@@ -1,6 +1,6 @@
 # log 010 — video, 3D and 3+1D: the traversal order is the whole game
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-09 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-09 by
 Claude. Airlock `sandbox-runner`. Tools: `Tools/test_axis_order.py`,
 `Tools/compare_curves.py`.
 
@@ -134,7 +134,7 @@ again, one dimension lower.
 
 ## 6. See also
 
-- `~/Programming/ZSpectralCompression/Planning/node_0_1_geometry/node_0_1_1_z_curve_router/CORE_0_1_1_z_curve_router.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/Planning/node_0_1_geometry/node_0_1_1_z_curve_router/CORE_0_1_1_z_curve_router.md`
   — the node this concerns.
-- `~/Programming/ZSpectralCompression/DevComms/log_008_ratio_versus_usability.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_008_ratio_versus_usability.md`
   — the granularity trade this extends into N dimensions.

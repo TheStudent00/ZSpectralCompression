@@ -1,6 +1,6 @@
 # log 003 — "exact" means roundable, and that changes the lossless answer
 
-Repo: `~/Programming/ZSpectralCompression`. Written 2026-09-08 by
+Repo: `~/Programming/PUBLIC/ZSpectralCompression`. Written 2026-09-08 by
 Claude. Airlock `sandbox-runner`, pure Python.
 
 the owner, 2026-09-08:
@@ -22,7 +22,7 @@ the owner:
 > wait how is k-means being applied? [...] but also you didnt confirm
 > the existence of the indexed curves in the prototype.
 
-Fair. `~/Programming/ZSpectralCompression/zspectral_compression.py`
+Fair. `~/Programming/PUBLIC/ZSpectralCompression/zspectral_compression.py`
 line 17:
 
 > `from sklearn.cluster import KMeans`
@@ -191,7 +191,7 @@ what it claims to say.
 ### 4.3 The reported ratio is pessimistic, by the amount in log 002
 
 `calculate_metrics` counts labels at one byte each.
-`~/Programming/ZSpectralCompression/DevComms/log_002_codebook_indices_and_plan.md`
+`~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_002_codebook_indices_and_plan.md`
 §2 measured label streams compressing to 1.50–2.04 bits under `xz`.
 Labels and `c0` are one byte per token each, so labels are roughly
 half the counted payload. Entropy-coding them would move the reported
@@ -203,7 +203,7 @@ honest way to state it is that the number is a floor.
 
 ## 5. See also
 
-- `~/Programming/ZSpectralCompression/DevComms/log_002_codebook_indices_and_plan.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_002_codebook_indices_and_plan.md`
   — the codebook and index-stream measurements this continues.
-- `~/Programming/ZSpectralCompression/Planning/node_0_6_open_work/node_0_6_0_lossless_mode/CORE_0_6_0_lossless_mode.md`
+- `~/Programming/PUBLIC/ZSpectralCompression/Planning/node_0_6_open_work/node_0_6_0_lossless_mode/CORE_0_6_0_lossless_mode.md`
   — the node this partly answers.

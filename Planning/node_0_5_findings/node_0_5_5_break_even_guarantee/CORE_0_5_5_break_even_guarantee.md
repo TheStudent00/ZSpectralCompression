@@ -96,6 +96,6 @@ readings:
 - On the two inputs where it beats zstd at matched granularity —
   photo tile 1.478x against 1.247x, smooth signal 22.223x against
   11.674x — it does so while remaining randomly addressable, which is
-  the property `~/Programming/GraphModel` actually needs.
+  the property `~/Programming/PUBLIC/GraphModel` actually needs.
 
-Record: `~/Programming/ZSpectralCompression/DevComms/log_009_break_even.md`.
+Record: `~/Programming/PUBLIC/ZSpectralCompression/DevComms/log_009_break_even.md`.

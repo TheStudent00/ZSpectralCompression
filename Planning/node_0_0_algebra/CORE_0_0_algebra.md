@@ -86,7 +86,7 @@ Two facts about this module that matter for the rest of the tree:
 An earlier draft of this node recorded "whether the function-arithmetic
 half belongs in this repo at all" as unsettled. the owner has answered it:
 ZSC exists to solve the universal input problem for
-`~/Programming/GraphModel`, whose Fractal-Aperture Spectral Transformer
+`~/Programming/PUBLIC/GraphModel`, whose Fractal-Aperture Spectral Transformer
 uses this exact structure as its atomic unit. `add`, `multiply`,
 `matmul`, `composition` and `integrate` are that model's message
 passing.
