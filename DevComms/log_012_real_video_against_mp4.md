@@ -6,7 +6,7 @@ Every computation ran in Airlock's default sandbox. Tools added:
 results) and `Tools/plot_rate_quality.py` (draws Figure 1 from that
 record).
 
-Dee, 2026-09-25:
+The owner, 2026-09-25:
 
 > have we tried compression on actual video? i assume that some Python
 > API has it. if not, i can get a video for us. i want to see how it
